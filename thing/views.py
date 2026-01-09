@@ -1,9 +1,17 @@
-from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Thing
 
-# Create your views here.
-# def index(request):
-#     return HttpResponse('index.html')
 
+def home(request):
+    return render(request, 'base.html')
+
+
+"""select * from thing"""
 def things(request):
-    return render(request, 'index.html')
+    things = Thing.objects.all()
+    return render(request, 'things/thing.html', context={'things': things})
+
+
+def thing_detail(request, thing_id):
+    thing = Thing.objects.filter(id=thing_id).first()
+    return render(request, 'things/thing_detail.html', context={'thing': thing})

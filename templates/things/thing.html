@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{%block content%}
+{% for thing in things %}
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">title: {{thing.Title}}</h5>
+    <p class="card-text">description: {{thing.description}}</p>
+    <p  class="card-text">salary: {{thing.value}}</p>
+    <a href= "/things/{{thing.id}}"class="btn btn-primary">Наняться</a>
+  </div>
+</div>
+{% endfor %}
+{% endblock content %}
