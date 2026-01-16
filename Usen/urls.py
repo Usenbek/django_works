@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 import thing.views
 
@@ -24,4 +26,4 @@ urlpatterns = [
     path('', thing.views.home),
     path('things/', thing.views.things),
     path('things/<int:thing_id>/', thing.views.thing_detail),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
