@@ -18,13 +18,19 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-
+from users.views import register_view, login_view, logout_view
 import thing.views
 
-urlpatterns = [
+user_patterns = [path('register/', register_view),
+                 path('login/', login_view),
+                 path('logout/', logout_view)
+                 ]
+
+urlpatterns = ( user_patterns + [
     path('admin/', admin.site.urls),
     path('', thing.views.home),
     path('things/', thing.views.things),
     path('things/<int:thing_id>/', thing.views.thing_detail),
     path('things/make_thing/', thing.views.make_thing),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+)

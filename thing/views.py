@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Thing
+from django.contrib.auth.decorators import login_required
 from .form import ThingForm
 
 
@@ -9,15 +10,17 @@ def home(request):
 
 
 """select * from thing"""
+@login_required(login_url='/login/')
 def things(request):
     things = Thing.objects.all() 
     return render(request, 'things/thing.html', context={'things': things})
 
-
+@login_required(login_url='/login/')
 def thing_detail(request, thing_id):
     thing = Thing.objects.filter(id=thing_id).first()
     return render(request, 'things/thing_detail.html', context={'thing': thing})
-
+    
+@login_required(login_url='/login/')
 def make_thing(request):
     if request.method == 'GET':
         form = ThingForm()
