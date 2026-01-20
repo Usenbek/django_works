@@ -26,4 +26,5 @@ urlpatterns = [
     path('', thing.views.home),
     path('things/', thing.views.things),
     path('things/<int:thing_id>/', thing.views.thing_detail),
+    path('things/make_thing/', thing.views.make_thing),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

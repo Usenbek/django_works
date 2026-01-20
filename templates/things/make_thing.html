@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<form method="POST" action="" enctype="multipart/form-data">
+  {% csrf_token %}
+  <!-- <p>
+  <label for="photo">photo</label>
+  <input type="file", name="photo">
+  </p>
+  <p>
+  <label for="value">value</label>
+  <input type="number", name="value">
+  </p>
+  <p>
+  <label for="Title">Title</label>
+  <input type="text", name="Title">
+  </p>
+  <p>
+  <label for="description">description</label>
+  <input type="text", name="description"> 
+  </p> -->
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">Create Thing</button>
+</form>
+{% endblock content %}
